@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "type": "module",
+  "name": "vite-react",
+  "description": "Vite 빌드도구 React 커스텀 템플릿",
+  "version": "1.0.0",
+  "engines": {
+    "node": "^22.12.0",
+    "vscode": "^1.96.0"
+  }
+}
