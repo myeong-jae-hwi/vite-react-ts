@@ -1,14 +1,20 @@
-// import ReactForm from './playgrounds/02-react-form';
-import Dengju from './playgrounds/dengju';
-import SignUpForm from './playgrounds/03-signup-form';
+import { useState } from 'react';
+import { getView } from '@/router/manage-view';
+import ReactPingIcon from '@/components/react-ping-icon';
+import Nav from '@/components/nav';
+import Router from '@/router';
 
 function Playground() {
-  return (
-    <div className="Playground">
-      <h1>플레이그라운드</h1>
+  const [route, setRoute] = useState(getView);
 
-      <SignUpForm></SignUpForm>
-    </div>
+  return (
+    <section className="Playground bg-euid-gray-200 wrapper">
+      <h1 lang="en" className="flex items-center gap-2 font-normal text-react">
+        <ReactPingIcon size={24} /> Playground
+      </h1>
+      <Nav onChangeRoute={setRoute} />
+      <Router route={route} />
+    </section>
   );
 }
 
