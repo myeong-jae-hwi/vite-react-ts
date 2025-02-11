@@ -3,7 +3,7 @@ import { tm } from '@/utils/tw-merge';
 
 function ReactPingIcon({ size = 20 }: { size?: number }) {
   const imagePath = getPublicImage('react.svg');
-
+  
   return (
     <span className="relative">
       <img src={imagePath} alt="React" height={size} width={size} />

@@ -6,32 +6,35 @@ import Router from '@/router';
 
 function Playground() {
   const [route, setRoute] = useState(getView);
-  const [count, setCount] = useState(0);
 
+  // [이펙트]
+  // 리액트의 외부 시스템과 리액트 앱의 동기화
+  // 싱글 페이지 앱의 브라우저 히스토리 탐색(navigation) 기능 구현
   useEffect(() => {
+    // 동일한 함수 참조 (구독한 함수와 해지하려는 함수가 동일해야 함)
     const handlePopState = () => {
-      const params = new URLSearchParams(location.search); // webAPI React 관리 X
+      // 라우트(route, 길: 전환될 페이지 뷰)
+      // 사이드 이펙트 처리
+      // 브라우저 히스토리에 상태 푸시(pushState)
+
+      // 변경된 ?view=[????] 읽기
+      const params = new URLSearchParams(location.search);
       const nextRoute = params.get('view');
-      console.log(params.get('view'));
 
-      if (nextRoute) {
-        setRoute(nextRoute);
-      }
+      // ?view=newRoute
+      // 리액트 앱 동기화 (표시할 화면)
+      // route 상태 변경
+      if (nextRoute) setRoute(nextRoute);
     };
-    window.addEventListener('popstate', handlePopState); // 마운트 되었을 때, count가 변경되었을 때
-    console.log('update');
 
+    // popstate 이벤트 구독
+    globalThis.addEventListener('popstate', handlePopState);
+
+    // popstate 이벤트 구독 해지(정리)
     return () => {
-      // clean up
-      window.removeEventListener('popstate', handlePopState);
-      console.log('clean up');
+      globalThis.removeEventListener('popstate', handlePopState);
     };
-  }, [count]);
-
-  const handleCount = () => {
-    setCount(count + 1);
-    console.log(count);
-  };
+  }, [route]);
 
   return (
     <section className="Playground bg-euid-gray-200 wrapper">
@@ -39,14 +42,6 @@ function Playground() {
         <ReactPingIcon size={24} /> Playground
       </h1>
       <Nav onChangeRoute={setRoute} />
-      <button
-        type="button"
-        className="mt-4 px-4 py-2 bg-react text-white rounded-md"
-        onClick={handleCount}
-      >
-        땡쥬
-      </button>
-
       <Router route={route} />
     </section>
   );
