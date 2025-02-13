@@ -21,6 +21,7 @@ function SearchForm({ query, setQuery }: SearchFormProps) {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    console.log('searchInputRef.current:', searchInputRef);
     if (searchInputRef.current) {
       searchInputRef.current.focus();
     }
