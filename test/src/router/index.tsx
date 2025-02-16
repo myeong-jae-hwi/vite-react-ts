@@ -15,6 +15,11 @@ import AnimationWithMotion from '@/pages/animation-with-motion';
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  // {
+  //   path: 'data-fetching',
+  //   text: '데이터 쿼리/뮤테이션',
+  //   element: <DataFetchingPage />,
+  // },
   {
     path: 'animation',
     text: '애니메이션',
