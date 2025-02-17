@@ -1,34 +1,34 @@
 import MemoryComponentDataPage from '@/pages/memory-component-data';
+import AnimationWithMotionPage from '@/pages/animation-with-motion';
 import StateManagement from '@/pages/state-management';
 import ErrorBoundaryDemo from '@/pages/error-boundary';
+import DataFetchingPage from '@/pages/data-fetching';
 import SideEffectDemo from '@/pages/side-effect';
 import SearchListPage from '@/pages/search-list';
+import AccessDOMPage from '@/pages/access-dom';
 import LifecycleDemo from '@/pages/lifecycle';
 import TicTacToe from '@/pages/tic-tac-toe';
 import SignInForm from '@/pages/sign-in';
 import SignUpForm from '@/pages/sign-up';
 import NotFound from '@/pages/not-found';
-import AccessDOMPage from '@/pages/access-dom';
-import AnimationWithMotion from '@/pages/animation-with-motion';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
-  // {
-  //   path: 'data-fetching',
-  //   text: '데이터 쿼리/뮤테이션',
-  //   element: <DataFetchingPage />,
-  // },
+  {
+    path: 'data-fetching',
+    text: '데이터 쿼리/뮤테이션',
+    element: <DataFetchingPage />,
+  },
   {
     path: 'animation',
-    text: '애니메이션',
-    element: <AnimationWithMotion />,
+    text: '모션 애니메이션',
+    element: <AnimationWithMotionPage />,
   },
-
   {
-    path: 'access-dom',
-    text: '접근/조작',
+    path: 'accessing-dom',
+    text: 'DOM 접근/조작',
     element: <AccessDOMPage />,
   },
   {

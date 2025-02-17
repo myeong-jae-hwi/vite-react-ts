@@ -9,7 +9,6 @@ interface SearchedListProps {
 }
 
 function SearchedList({ list, query, onUpdate }: SearchedListProps) {
-  console.log('하이콩: ', query);
   const words = query
     .split(' ')
     .filter(Boolean)
@@ -29,7 +28,7 @@ function SearchedList({ list, query, onUpdate }: SearchedListProps) {
     });
   });
 
-  console.log(filteredList);
+  // console.log(filteredList);
 
   const filteredCount = filteredList.length;
   const isEmpty = filteredCount === 0;

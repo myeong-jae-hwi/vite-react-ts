@@ -1,38 +1,43 @@
-import { Box, Redo } from '@mynaui/icons-react';
-import AnimationBox from './components/animation-box';
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { Box } from '@mynaui/icons-react';
 import StaggerList from './components/stagger-list';
+import AnimationBox from './components/animation-box';
 import ReplayAnimation from './components/replay-animation';
+import MotionComponent from './components/motion-component';
 
-function AnimationWithMotion() {
-  const [replayKey, setReplayKey] = useState(0);
+function AnimationWithMotionPage() {
+  // 하위 컴포넌트 DOM 요소 참조를 위한 참조(ref) 객체
+  const childDomRef = useRef<HTMLButtonElement>(null);
 
-  const handleReplay = () => {
-    setReplayKey((r) => r + 1);
-  };
+  useEffect(() => {
+    const childDomButtonElement = childDomRef.current;
+
+    if (childDomButtonElement) {
+      childDomButtonElement.focus();
+    }
+  });
 
   return (
-    <section>
-      <h2 className="text-2xl font-medium">애니메이션</h2>
+    <section className="flex flex-col items-start gap-7">
+      <h2 className="text-2xl font-medium">
+        애니메이션 - Motion 라이브러리 활용
+      </h2>
 
       <ReplayAnimation>
-        <AnimationBox>
-          <Box size="24" />
-        </AnimationBox>
+        <MotionComponent />
       </ReplayAnimation>
 
-      <button
-        type="button"
-        className="flex gap-1 items-center bg-react text-white text-sm rounded-lg p-2 active:scale-95 m-4"
-        onClick={handleReplay}
-      >
-        <Redo size="16" />
-        Replay
-      </button>
+      <ReplayAnimation>
+        <StaggerList />
+      </ReplayAnimation>
 
-      <StaggerList key={replayKey}></StaggerList>
+      <ReplayAnimation>
+        <AnimationBox ref={childDomRef}>
+          <Box size={48} />
+        </AnimationBox>
+      </ReplayAnimation>
     </section>
   );
 }
 
-export default AnimationWithMotion;
+export default AnimationWithMotionPage;
