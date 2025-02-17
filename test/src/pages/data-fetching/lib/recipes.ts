@@ -1,9 +1,6 @@
 import type { Recipes, Recipe } from '../types';
 
 const ENDPOINT = 'https://dummyjson.com/recipes';
-// GET https://dummyjson.com/recipes/search?q=Margherita
-// GET https://dummyjson.com/recipes?limit=5&skip=8&select=name,image,rating
-// GET https://dummyjson.com/recipes?sortBy=name&order=asc
 
 interface Options {
   q?: string;
@@ -13,6 +10,24 @@ interface Options {
   sortBy?: string;
   order?: 'asc' | 'desc';
 }
+
+export const addRecipes = async (newRecipe: Partial<Recipe>) => {
+  try {
+    const response = await fetch('https://dummyjson.com/recipes/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newRecipe),
+    });
+
+    if (!response.ok) {
+      throw new Error('레시피 추가에 실패했습니다');
+    }
+
+    return await response.json();
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const getRecipes = async ({
   q = '',
@@ -60,3 +75,6 @@ export const getRecipeById = async (id: string | number) => {
     response.json()
   )) as Recipe;
 };
+function async(arg0: {}) {
+  throw new Error('Function not implemented.');
+}
