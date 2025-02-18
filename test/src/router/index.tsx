@@ -12,11 +12,17 @@ import TicTacToe from '@/pages/tic-tac-toe';
 import SignInForm from '@/pages/sign-in';
 import SignUpForm from '@/pages/sign-up';
 import NotFound from '@/pages/not-found';
+import CustomHook from '@/pages/custom-hook';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'custom-hooks',
+    text: '커스텀 훅',
+    element: <CustomHook />,
+  },
   {
     path: 'supabase-memo-list',
     text: '메모 리스트 (with Supabase)',
