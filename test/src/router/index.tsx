@@ -2,6 +2,7 @@ import MemoryComponentDataPage from '@/pages/memory-component-data';
 import AnimationWithMotionPage from '@/pages/animation-with-motion';
 import StateManagement from '@/pages/state-management';
 import ErrorBoundaryDemo from '@/pages/error-boundary';
+import CustomHookPage from '@/pages/custom-hook/page';
 import DataFetchingPage from '@/pages/data-fetching';
 import SideEffectDemo from '@/pages/side-effect';
 import SearchListPage from '@/pages/search-list';
@@ -12,16 +13,15 @@ import TicTacToe from '@/pages/tic-tac-toe';
 import SignInForm from '@/pages/sign-in';
 import SignUpForm from '@/pages/sign-up';
 import NotFound from '@/pages/not-found';
-import CustomHook from '@/pages/custom-hook';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
   {
-    path: 'custom-hooks',
-    text: '커스텀 훅',
-    element: <CustomHook />,
+    path: 'react-custom-hook',
+    text: '로직 재사용',
+    element: <CustomHookPage />,
   },
   {
     path: 'supabase-memo-list',

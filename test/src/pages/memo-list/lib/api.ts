@@ -1,5 +1,5 @@
-import { RealtimePostgresChangesPayload } from '@supabase/supabase-js';
 import { supabase } from './supabase-client';
+import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js';
 import type {
   MemoItem,
   MemoItemInsert,
@@ -7,21 +7,6 @@ import type {
 } from './supabase-client';
 
 const DATABASE_NAME = 'memo-list';
-
-export const subscribe = (
-  callback: (
-    payload: RealtimePostgresChangesPayload<Record<string, unknown>>
-  ) => void
-) => {
-  return supabase
-    .channel(`${DATABASE_NAME}-channel`)
-    .on(
-      'postgres_changes',
-      { event: '*', schema: 'public', table: 'memo-list' },
-      callback
-    )
-    .subscribe();
-};
 
 interface QueryOptions {
   fields?: string;
@@ -79,4 +64,19 @@ export const editMemoItem = async (updateMemoItem: MemoItemUpdate) => {
 
 export const deleteMemoItem = async (deleteItemId: MemoItem['id']) => {
   return await supabase.from(DATABASE_NAME).delete().eq('id', deleteItemId);
+};
+
+export const subscribe = (
+  callback: (
+    payload: RealtimePostgresChangesPayload<Record<string, unknown>>
+  ) => void
+) => {
+  return supabase
+    .channel(`${DATABASE_NAME}-channel`)
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'memo-list' },
+      callback
+    )
+    .subscribe();
 };
