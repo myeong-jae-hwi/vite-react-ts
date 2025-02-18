@@ -2,32 +2,36 @@ import type { Recipes, Recipe } from '../types';
 
 const ENDPOINT = 'https://dummyjson.com/recipes';
 
-interface Options {
+interface QueryOptions {
+  // 검색
   q?: string;
+  // 필터링
+  fields?: string;
+  // 페이지네이션
   limit?: number;
   startIndex?: number;
-  fields?: string;
-  sortBy?: string;
+  // 정렬
+  sortBy?: keyof Recipe;
   order?: 'asc' | 'desc';
 }
 
-export const addRecipes = async (newRecipe: Partial<Recipe>) => {
-  try {
-    const response = await fetch('https://dummyjson.com/recipes/add', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newRecipe),
-    });
+// CREATE -------------------------------------------------------
 
-    if (!response.ok) {
-      throw new Error('레시피 추가에 실패했습니다');
-    }
+export const addRecipe = async (newRecipe: Partial<Recipe>) => {
+  const response = await fetch(`${ENDPOINT}/add`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(newRecipe),
+  });
 
-    return await response.json();
-  } catch (e) {
-    console.log(e);
+  if (!response.ok) {
+    throw new Error('레시피 추가에 실패했습니다. 😭');
   }
+
+  return (await response.json()) as Recipe;
 };
+
+// READ ---------------------------------------------------------
 
 export const getRecipes = async ({
   q = '',
@@ -36,7 +40,7 @@ export const getRecipes = async ({
   fields = '',
   sortBy = 'id',
   order = 'asc',
-}: Options = {}) => {
+}: QueryOptions = {}) => {
   let requestQuery = `${ENDPOINT}/`;
 
   if (q.trim().length > 0) {
@@ -75,6 +79,35 @@ export const getRecipeById = async (id: string | number) => {
     response.json()
   )) as Recipe;
 };
-function async(arg0: {}) {
-  throw new Error('Function not implemented.');
-}
+
+// UPDATE -------------------------------------------------------
+
+export const editRecipe = async (editRecipe: Partial<Recipe>) => {
+  const { id, ...recipe } = editRecipe;
+
+  const response = await fetch(`${ENDPOINT}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(recipe),
+  });
+
+  if (!response.ok) {
+    throw new Error('레시피 수정에 실패했습니다. 🥲');
+  }
+
+  return (await response.json()) as Recipe;
+};
+
+// DELETE -------------------------------------------------------
+
+export const deleteRecipe = async (deleteRecipeId: number) => {
+  const response = await fetch(`${ENDPOINT}/${deleteRecipeId}`, {
+    method: 'DELETE',
+  });
+
+  if (!response.ok) {
+    throw new Error('레시피 삭제에 실패했습니다. 🥲');
+  }
+
+  return (await response.json()) as Recipe;
+};
