@@ -1,4 +1,9 @@
+import { createContext } from 'react';
 import GrandParent from './components/grand-parent';
+
+const GreetingContext = createContext(undefined);
+console.log(GreetingContext.Provider);
+console.log(GreetingContext.Consumer);
 
 function UsingContextPage() {
   return (
