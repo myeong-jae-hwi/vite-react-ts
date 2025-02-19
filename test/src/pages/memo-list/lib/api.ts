@@ -46,26 +46,34 @@ export const getMemoItemById = async (id: MemoItem['id']) => {
     .returns<MemoItem[]>();
 };
 
+// 데이터 추가
 export const addMemoItem = async (...newMemoItems: MemoItemInsert[]) => {
   return await supabase.from(DATABASE_NAME).insert(newMemoItems).select();
 };
 
+// 데이터 수정
 export const editMemoItem = async (updateMemoItem: MemoItemUpdate) => {
   if (!updateMemoItem.id) {
     throw new Error('updateMemoItem 객체에 id 속성 입력이 필요합니다.');
   }
 
-  return await supabase
-    .from(DATABASE_NAME)
-    .update(updateMemoItem)
-    .eq('id', updateMemoItem.id)
-    .select();
+  try {
+    return await supabase
+      .from(DATABASE_NAME)
+      .update(updateMemoItem)
+      .eq('id', updateMemoItem.id)
+      .select();
+  } catch (e) {
+    console.error(e);
+  }
 };
 
+// 데이터 삭제
 export const deleteMemoItem = async (deleteItemId: MemoItem['id']) => {
   return await supabase.from(DATABASE_NAME).delete().eq('id', deleteItemId);
 };
 
+//
 export const subscribe = (
   callback: (
     payload: RealtimePostgresChangesPayload<Record<string, unknown>>

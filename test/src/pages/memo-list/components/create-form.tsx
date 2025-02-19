@@ -12,8 +12,8 @@ function CreateForm() {
 
     const newMemoItem = {
       id,
-      title,
-      content,
+      title, // 안녕
+      content, // 하세요
     } as MemoItemInsert;
 
     await delay(1200);

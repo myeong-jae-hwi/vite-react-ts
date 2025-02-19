@@ -33,7 +33,6 @@ function RecipeEdit() {
 
     // <form> 내부 데이터 가져오기
     const editRecipeName = formData.get('recipe') as string;
-
     let willEditRecipe = null;
 
     // 현재 화면에 표시된 레시피 아이템 중 하나
@@ -41,6 +40,7 @@ function RecipeEdit() {
       willEditRecipe = data.recipes.at(randomIndex);
     }
 
+    console.log('땡주', editRecipeName);
     // 서버에 데이터 추가 요청
     const editedRecipe = await editRecipe({
       id: willEditRecipe?.id ?? 0,

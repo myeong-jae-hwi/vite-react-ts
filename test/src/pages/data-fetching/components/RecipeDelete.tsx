@@ -40,8 +40,11 @@ function RecipeDelete() {
 
     if (willDeleteRecipe) {
       const deletedRecipe = await deleteRecipe(willDeleteRecipe.id);
+      console.log('떙주~~~', deletedRecipe);
+      console.log('떙주~~~', data);
 
       if (data && deletedRecipe) {
+        console.log('하이하이: ', { ...data });
         // 화면 업데이트 요청
         const nextData = {
           ...data,
@@ -49,6 +52,8 @@ function RecipeDelete() {
             return recipe.id !== deletedRecipe.id;
           }),
         };
+
+        console.log(nextData);
 
         setData(nextData);
       }
