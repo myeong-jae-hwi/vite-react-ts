@@ -19,7 +19,7 @@ function MemoItem({ item }: MemoItemProps) {
 
   const handleDelete = async () => {
     setIsDeleting(true);
-    await delay(1200);
+    await delay(2000);
     await deleteMemoItem(item.id);
     setIsDeleting(false);
   };
@@ -49,13 +49,12 @@ function MemoItem({ item }: MemoItemProps) {
       ...item,
       title: titleElement.textContent,
       content: contentElement.textContent,
-      update_at: currentTime,
+      updated_at: currentTime,
     } as MemoItemUpdate;
 
     setIsSaving(true);
-    // await delay(900);
+    await delay(900);
     await editMemoItem(willEditMemoItem);
-    console.log('저장 완료:', willEditMemoItem);
     // 서버에 저장한 후 모드 변경
     setIsSaving(false);
     setIsEditing(false);
