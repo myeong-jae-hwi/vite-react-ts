@@ -1,7 +1,8 @@
 import Loading from '@/components/loading';
-import PokemonLayout from './pokemon-layout';
+// import PokemonLayout from './pokemon-layout';
 
 function PokemonSpinner() {
+  console.log('재휘 바보');
   return (
     // <PokemonLayout>
     <Loading

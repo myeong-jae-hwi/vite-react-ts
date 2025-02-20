@@ -55,11 +55,11 @@ function SuspenseUsePage() {
           </button>
           <output className="px-4 font-extralight text-3xl">{pokemonId}</output>
         </div>
-        <ErrorBoundary fallback={<PokemonError />}>
-          <Suspense fallback={<PokemonSpinner />}>
-            <Pokemon id={pokemonId} />
-          </Suspense>
-        </ErrorBoundary>
+        {/* <ErrorBoundary fallback={<PokemonError />}> */}
+        <Suspense fallback={<PokemonSpinner />}>
+          <Pokemon id={pokemonId} />
+        </Suspense>
+        {/* </ErrorBoundary> */}
       </section>
     </>
   );
