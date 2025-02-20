@@ -1,10 +1,15 @@
 import { ErrorBoundary } from 'react-error-boundary';
+import PrintError from './components/error';
 import Playground from './playground';
+import { ThemeProvider, ThemeSetters } from './contexts/theme';
 
 function App() {
   return (
-    <ErrorBoundary fallback={<p>이런... App에서 오류가 발생했습니다! 😥</p>}>
-      <Playground />
+    <ErrorBoundary FallbackComponent={PrintError}>
+      <ThemeProvider>
+        <ThemeSetters />
+        <Playground />
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }
