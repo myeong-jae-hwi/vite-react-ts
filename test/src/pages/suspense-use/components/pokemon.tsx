@@ -1,4 +1,4 @@
-import { use, useState } from 'react';
+import { use } from 'react';
 import { fetchPokemon } from '../api/pokemon';
 import PokemonLayout from './pokemon-layout';
 
@@ -8,11 +8,9 @@ interface PokemonProps {
 
 function Pokemon({ id }: PokemonProps) {
   const pokemon = use(fetchPokemon(id));
-  console.log('포켓몬', pokemon.id);
 
   return (
-    // <PokemonLayout>
-    <>
+    <PokemonLayout>
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
         alt=""
@@ -23,9 +21,7 @@ function Pokemon({ id }: PokemonProps) {
       <figcaption className="text-sm text-stone-700 uppercase -translate-y-1">
         {pokemon.name}
       </figcaption>
-
-      {/* </PokemonLayout> */}
-    </>
+    </PokemonLayout>
   );
 }
 
