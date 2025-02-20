@@ -17,11 +17,23 @@ import TicTacToe from '@/pages/tic-tac-toe/page';
 import SignInForm from '@/pages/sign-in/page';
 import SignUpForm from '@/pages/sign-up/page';
 import NotFound from '@/pages/not-found/page';
+import UnderstandingContextPage from '@/pages/understanding-context/page';
+import OptimizationPage from '@/pages/optimization/page';
 
 // --------------------------------------------------------------------------
 // 내비게이션 리스트 데이터
 
 export const navList = [
+  {
+    path: 'react-optimization',
+    text: '성능 최적화',
+    element: <OptimizationPage />,
+  },
+  {
+    path: 'understanding-context',
+    text: '컨텍스트 이해',
+    element: <UnderstandingContextPage />,
+  },
   {
     path: 'auto-headings-level',
     text: '제목 레벨 자동 구성 (with 컨텍스트)',
