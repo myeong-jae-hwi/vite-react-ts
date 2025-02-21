@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 import PrintError from './components/error';
 import { ThemeProvider, ThemeSetters } from './contexts/theme';
 import AuthLayout from './layouts/auth/layout';
+import CommonLayout from './layouts/common/layout';
 import DashboardPage from './pages/dashboard/page';
 import HomePage from './pages/home/page';
+import MemoListPage from './pages/memo-list/page';
 import PlaygroundPage from './pages/playground/page';
 import SignInPage from './pages/sign-in/page';
 import SignUpPage from './pages/sign-up/page';
@@ -16,8 +18,11 @@ function App() {
         <ThemeSetters />
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
-            <Route index Component={HomePage} />
-            <Route path="/playground" element={<PlaygroundPage />} />
+            <Route element={<CommonLayout />}>
+              <Route index Component={HomePage} />
+              <Route path="/playground" element={<PlaygroundPage />} />
+              <Route path="/memo-list" element={<MemoListPage />} />
+            </Route>
 
             {/* 경로(route segment) 추가 */}
             <Route path="/dashboard">
